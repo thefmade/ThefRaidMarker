@@ -1,0 +1,202 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+    <Script file="ThefRaidMarker.lua"/> 
+    <Frame name="ThefRaidMarkerFrame" toplevel="true" movable="true" enableMouse="true" parent="UIParent">
+        <Size x="256" y="40"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+            <EdgeSize val="16"/>
+            <TileSize val="16"/>
+            <BackgroundInsets>
+                <AbsInset left="2" right="2" top="2" bottom="2"/>
+            </BackgroundInsets>
+            <Color r="0" g="0" b="0" a="1"/>
+        </Backdrop>
+        <Scripts>
+            <OnLoad>
+                ThefRaidMarker_OnLoad(self)
+            </OnLoad>
+            <OnEvent>
+                ThefRaidMarker_OnEvent(self, event, ...)
+            </OnEvent>
+            <OnMouseDown>
+                if button == "RightButton" and self:IsMovable() then
+                    self:StartMoving()
+                end
+            </OnMouseDown>
+            <OnMouseUp>
+                if button == "RightButton" then
+                    self:StopMovingOrSizing()
+                    ThefRaidMarker_SavePosition(self)
+                end
+            </OnMouseUp>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+                GameTooltip:SetText("ThefRaidMarker", 1, 1, 1)
+                GameTooltip:AddLine("[Click]: Assign/remove mark.", 1, 0.82, 0)
+                GameTooltip:AddLine("[Alt Click]: Assign/remove and set auto mark.", 1, 0.82, 0)
+                GameTooltip:AddLine("[Right Button]: Move Toolbar.", 1, 0.82, 0)
+                GameTooltip:Show()
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide()
+            </OnLeave>
+        </Scripts>
+        <Frames>
+            <!--
+            Marks:
+                1 - Star
+                2 - Circle
+                3 - Diamond
+                4 - Triangle
+                5 - Moon
+                6 - Square
+                7 - Cross
+                8 - Skull
+            -->
+            <!-- Button 1: Skull -->
+            <Button name="$parentButton1" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="8" y="-8"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_8"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_8"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(8, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 2: Cross -->
+            <Button name="$parentButton2" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton1" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_7"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_7"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(7, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 3: Triangle -->
+            <Button name="$parentButton3" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton2" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_4"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_4"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(4, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 4: Square -->
+            <Button name="$parentButton4" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton3" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_6"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_6"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(6, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 5: Circle -->
+            <Button name="$parentButton5" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton4" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_2"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_2"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(2, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 6: Moon -->
+            <Button name="$parentButton6" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton5" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_5"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_5"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(5, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 7: Star -->
+            <Button name="$parentButton7" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton6" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_1"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_1"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(1, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 8: Diamond -->
+            <Button name="$parentButton8" inherits="SecureActionButtonTemplate">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton7" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <NormalTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_3"/>
+                <PushedTexture file="Interface\TargetingFrame\UI-RaidTargetingIcon_3"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_SetMarker(3, IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <!-- Button 9: unset -->
+            <Button name="$parentButton9" inherits="UIPanelButtonTemplate">
+                <Size x="48" y="24"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton8" relativePoint="RIGHT" x="4" y="0"/>
+                </Anchors>
+                <ButtonText name="$parentText" inherits="GameFontNormalSmall" text="Unset">
+                    <Color r="1" g="0.82" b="0"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </ButtonText>
+                <Scripts>
+                    <OnClick>
+                        ThefRaidMarker_RemoveMarker(IsAltKeyDown())
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Frame>
+</Ui>

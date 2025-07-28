@@ -1,0 +1,9 @@
+## Interface: 20400
+## Title: ThefRaidMarker
+## Notes: A movable bar to set or clear raid target marks. Works with SpikesEasyMarks.
+## Author: Thef
+## SavedVariables: ThefRaidMarkerDB
+## OptionalDeps: SpikesEasyMarks
+
+ThefRaidMarker.xml
+ThefRaidMarker.lua
