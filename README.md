@@ -2,6 +2,8 @@
 
 A movable bar to set or clear raid target marks. Works with SpikesEasyMarks.
 
+![](./ThefRaidMarker_Toolbar.png)
+
 # Why?
 
 It's sometimes more convenient to assign marks to targets via buttons, so you can get rid off keyboard shortcuts.
