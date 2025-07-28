@@ -18,6 +18,11 @@ ThefRaidMarker shows a movable toolbar with buttons for all eight possible raid 
 - [ ] Click again to remove the mark.
 - [ ] Click another button to change the mark.
 - [ ] Click and hold the right mouse button on the bar frame to move the bar around.
+- [ ] Hold [Alt] and click left to activate or remove automark assignment for the targetted unit. Requires **SpikesEasyMarks**.
 - [ ] Show or hide the bar with `/trm toggle`.
 - [ ] Open the help dialog of ThefRaidMarker with the slash command `/trm help`
 - [ ] Realign the bar to the center of the screen with `/trm reset`.
+
+Also shows the assigned auto mark for SpikesEasyMarks in a units tooltip.
+
+![](./ThefRaidMarker_UnitTooltip.png)
