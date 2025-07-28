@@ -2,7 +2,7 @@
 ## Title: ThefRaidMarker
 ## Notes: A movable bar to set or clear raid target marks. Works with SpikesEasyMarks.
 ## Author: Thef
-## SavedVariables: ThefRaidMarkerDB
+## SavedVariablesPerCharacter: ThefRaidMarkerDB
 ## OptionalDeps: SpikesEasyMarks
 
 ThefRaidMarker.xml
