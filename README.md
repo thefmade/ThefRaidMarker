@@ -4,15 +4,15 @@ A movable bar to set or clear raid target marks. Works with SpikesEasyMarks.
 
 ![](./ThefRaidMarker_Toolbar.png)
 
-# Why?
+## Why?
 
 It's sometimes more convenient to assign marks to targets via buttons, so you can get rid off keyboard shortcuts.
 
-# What?
+## What?
 
 ThefRaidMarker shows a movable toolbar with buttons for all eight possible raid markers and an extra button to remove the current mark.
 
-# How?
+## How?
 
 - [ ] Select a target and click one of the eight buttons to set the raid mark.
 - [ ] Click again to remove the mark.
@@ -26,3 +26,7 @@ ThefRaidMarker shows a movable toolbar with buttons for all eight possible raid 
 Also shows the assigned auto mark for SpikesEasyMarks in a units tooltip.
 
 ![](./ThefRaidMarker_UnitTooltip.png)
+
+## LICENSE
+
+This software is licensed under the GNU General Public License (GPL) version 3. You are free to use, modify, and distribute it in accordance with the terms of the GPL. For details, see the [LICENSE](LICENSE) file or visit [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
